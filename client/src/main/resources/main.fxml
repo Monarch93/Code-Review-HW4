@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
+   <top>
+      <VBox prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Disconnect" onAction="#disconnectButtonClick" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar prefHeight="42.0" prefWidth="600.0">
+              <items>
+                  <Button mnemonicParsing="false" onAction="#goToUpDirButtonClick" text=".." />
+                  <Button mnemonicParsing="false" onAction="#goToRootDirButtonClick" text="~" />
+                  <Button mnemonicParsing="false" onAction="#makeDirButtonClick" text="mkdir" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonClick" text="rm" />
+                  <Button fx:id="renameButton" mnemonicParsing="false" onAction="#renameButtonClick" text="ren" />
+                  <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyButtonClick" text="copy" />
+                  <Button fx:id="pasteButton" mnemonicParsing="false" onAction="#pasteButtonClick" text="paste" />
+                  <Button fx:id="downloadButton" mnemonicParsing="false" onAction="#downloadButtonClick" text="download" />
+                  <Button fx:id="uploadButton" mnemonicParsing="false" onAction="#uploadButtonClick" text="upload" />
+                  <TextField fx:id="searchField" />
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonClick" text="search" />
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <Pane prefHeight="28.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0"  fx:id="breadCrumbs" />
+         </children></Pane>
+   </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="tableView" onMouseClicked="#clickItem" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                  <TableColumn prefWidth="50.0" text="Is dir">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="isDir" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="nameColumn" prefWidth="300.0" text="Name">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="fileName" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="50.0" text="Size">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="size" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="150.0" text="Date create">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="dateCreate" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="150.0" text="Date modify">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="dateModify" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+                <sortOrder>
+                    <fx:reference source="nameColumn" />
+                </sortOrder>
+            </TableView>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
